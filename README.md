@@ -1,5 +1,7 @@
 # Numpad ISBN
 
+This utility is used to help entering large numbers of ISBN numbers and validating the input.
+
 ### Original Audio Files
 
 ```shell
@@ -18,9 +20,13 @@ wget https://evolution.voxeo.com/library/audio/prompts/alphabet/X.wav
 
 ### Optimize Audio Files
 
+Resources:
+
 * https://stackoverflow.com/questions/11834297/how-can-i-remove-silence-from-an-mp3-programmatically
 * http://www.jamesrobertson.eu/clf/2012/may/11/speeding-up-a-wave-file-using-sox.html
 * http://stefaanlippens.net/audio_conversion_cheat_sheet/
+
+Optimizations:
 
 * sped up
 * reduced to mono
