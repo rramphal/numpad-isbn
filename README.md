@@ -1,6 +1,6 @@
 # Numpad ISBN
 
-This utility is used to help entering large numbers of ISBN numbers and validating the input.
+This utility is used to help entering large numbers of ISBNs and validating input.
 
 ### Original Audio Files
 
