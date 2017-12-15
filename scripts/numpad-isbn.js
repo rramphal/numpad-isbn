@@ -6,6 +6,8 @@
     }
 })(function () {
     const inputNode = document.getElementById('numpad-isbn-textearea');
+    const audioNode = document.getElementById('numpad-isbn-audio');
+    const xNode     = document.getElementById('numpad-isbn-replace-x');
 
     function isValidInput (event) {
         return (
@@ -24,19 +26,26 @@
     }
 
     function handleKeydown (event) {
+        const shouldReadOutLoud  = audioNode.checked;
+        const shouldReplaceWithX = xNode.checked;
+
         if (isValidInput(event)) {
             let key = event.key;
 
-            if (event.keyCode === 107) {
-                event.preventDefault();
+            if (shouldReplaceWithX) {
+                if (event.keyCode === 107) {
+                    event.preventDefault();
 
-                key = 'X';
-                inputNode.value += key;
+                    key = 'X';
+                    inputNode.value += key;
+                }
             }
 
-            // https://stackoverflow.com/questions/9419263/playing-audio-with-javascript
-            const audio = new Audio(`audio/${key}.mp3`);
-            audio.play();
+            if (shouldReadOutLoud) {
+                // https://stackoverflow.com/questions/9419263/playing-audio-with-javascript
+                const audio = new Audio(`audio/${key}.mp3`);
+                audio.play();
+            }
         }
     }
 
