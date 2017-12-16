@@ -18,6 +18,8 @@ wget https://evolution.voxeo.com/library/audio/prompts/numbers/9.wav
 wget https://evolution.voxeo.com/library/audio/prompts/alphabet/X.wav
 ```
 
+"Valid" and "invalid" audio files were created at http://www.fromtexttospeech.com/ using `US English`, `medium`. "Valid" uses `Daisy` and "invalid" uses `George`.
+
 ### Optimize Audio Files
 
 Resources:
@@ -45,6 +47,8 @@ sox 7.wav -C 64 7.mp3 tempo 1.75 channels 1 silence 1 0.1 0.1% reverse silence 1
 sox 8.wav -C 64 8.mp3 tempo 1.75 channels 1 silence 1 0.1 0.1% reverse silence 1 0.1 0.1% reverse
 sox 9.wav -C 64 9.mp3 tempo 1.75 channels 1 silence 1 0.1 0.1% reverse silence 1 0.1 0.1% reverse
 sox X.wav -C 64 X.mp3 tempo 1.50 channels 1 silence 1 0.1 0.1% reverse silence 1 0.1 0.1% reverse
+sox invalid-raw.mp3 -C 64 invalid.mp3 tempo 1.50 channels 1 silence 1 0.1 0.1% reverse silence 1 0.1 0.1% reverse
+sox valid-raw.mp3 -C 64 valid.mp3 tempo 1.50 channels 1 silence 1 0.1 0.1% reverse silence 1 0.1 0.1% reverse
 ```
 
 ### Speech Synthesis
@@ -59,3 +63,7 @@ sox X.wav -C 64 X.mp3 tempo 1.50 channels 1 silence 1 0.1 0.1% reverse silence 1
 //     window.speechSynthesis.speak(utterance);
 // }
 ```
+
+### ISBN Validation
+
+ISBN validation uses https://git.daplie.com/coolaj86/isbnjs.

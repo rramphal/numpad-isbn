@@ -5,11 +5,32 @@
         document.addEventListener('DOMContentLoaded', callback);
     }
 })(function () {
-    const inputNode = document.getElementById('numpad-isbn-textearea');
-    const audioNode = document.getElementById('numpad-isbn-audio');
-    const xNode     = document.getElementById('numpad-isbn-replace-x');
+    const inputNode    = document.getElementById('numpad-isbn-textearea');
+    const audioNode    = document.getElementById('numpad-isbn-audio');
+    const xNode        = document.getElementById('numpad-isbn-replace-x');
+    const validateNode = document.getElementById('numpad-isbn-validate');
 
-    function isValidInput (event) {
+    const AUDIO = {
+        '0'       : new Audio('audio/0.mp3'),
+        '1'       : new Audio('audio/1.mp3'),
+        '2'       : new Audio('audio/2.mp3'),
+        '3'       : new Audio('audio/3.mp3'),
+        '4'       : new Audio('audio/4.mp3'),
+        '5'       : new Audio('audio/5.mp3'),
+        '6'       : new Audio('audio/6.mp3'),
+        '7'       : new Audio('audio/7.mp3'),
+        '8'       : new Audio('audio/8.mp3'),
+        '9'       : new Audio('audio/9.mp3'),
+        'X'       : new Audio('audio/X.mp3'),
+        'valid'   : new Audio('audio/valid.mp3'),
+        'invalid' : new Audio('audio/invalid.mp3'),
+    };
+
+    function isValidISBN (input) {
+        return !!ISBN.parse(input);
+    }
+
+    function isValidISBNCharacter (event) {
         return (
             event.keyCode ===  48 || // 0
             event.keyCode ===  49 || // 1
@@ -21,15 +42,16 @@
             event.keyCode ===  55 || // 7
             event.keyCode ===  56 || // 8
             event.keyCode ===  57 || // 9
-            event.keyCode === 107    // + (which we are using for X)
+            event.keyCode === 107    // plus sign (which we are using for X)
         );
     }
 
     function handleKeydown (event) {
         const shouldReadOutLoud  = audioNode.checked;
         const shouldReplaceWithX = xNode.checked;
+        const shouldValidate     = validateNode.checked;
 
-        if (isValidInput(event)) {
+        if (isValidISBNCharacter(event)) {
             let key = event.key;
 
             if (shouldReplaceWithX) {
@@ -43,8 +65,18 @@
 
             if (shouldReadOutLoud) {
                 // https://stackoverflow.com/questions/9419263/playing-audio-with-javascript
-                const audio = new Audio(`audio/${key}.mp3`);
-                audio.play();
+                AUDIO[key].play();
+            }
+        } else if (event.keyCode === 13) { // enter key
+            if (shouldValidate) {
+                const lines = inputNode.value.split('\n');
+                const lastLine = lines[lines.length - 1];
+
+                if (isValidISBN(lastLine)) {
+                    AUDIO['valid'].play();
+                } else {
+                    AUDIO['invalid'].play();
+                }
             }
         }
     }
