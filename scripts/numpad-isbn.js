@@ -11,19 +11,19 @@
     const validateNode = document.getElementById('numpad-isbn-validate');
 
     const AUDIO = {
-        '0'       : new Audio('audio/0.mp3'),
-        '1'       : new Audio('audio/1.mp3'),
-        '2'       : new Audio('audio/2.mp3'),
-        '3'       : new Audio('audio/3.mp3'),
-        '4'       : new Audio('audio/4.mp3'),
-        '5'       : new Audio('audio/5.mp3'),
-        '6'       : new Audio('audio/6.mp3'),
-        '7'       : new Audio('audio/7.mp3'),
-        '8'       : new Audio('audio/8.mp3'),
-        '9'       : new Audio('audio/9.mp3'),
-        'X'       : new Audio('audio/X.mp3'),
-        'valid'   : new Audio('audio/valid.mp3'),
-        'invalid' : new Audio('audio/invalid.mp3'),
+        '0'       : new Howl({ src : ['audio/0.mp3']       }),
+        '1'       : new Howl({ src : ['audio/1.mp3']       }),
+        '2'       : new Howl({ src : ['audio/2.mp3']       }),
+        '3'       : new Howl({ src : ['audio/3.mp3']       }),
+        '4'       : new Howl({ src : ['audio/4.mp3']       }),
+        '5'       : new Howl({ src : ['audio/5.mp3']       }),
+        '6'       : new Howl({ src : ['audio/6.mp3']       }),
+        '7'       : new Howl({ src : ['audio/7.mp3']       }),
+        '8'       : new Howl({ src : ['audio/8.mp3']       }),
+        '9'       : new Howl({ src : ['audio/9.mp3']       }),
+        'X'       : new Howl({ src : ['audio/X.mp3']       }),
+        'valid'   : new Howl({ src : ['audio/valid.mp3']   }),
+        'invalid' : new Howl({ src : ['audio/invalid.mp3'] }),
     };
 
     function isValidISBN (input) {
@@ -64,7 +64,6 @@
             }
 
             if (shouldReadOutLoud) {
-                // https://stackoverflow.com/questions/9419263/playing-audio-with-javascript
                 AUDIO[key].play();
             }
         } else if (event.keyCode === 13) { // enter key

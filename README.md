@@ -51,17 +51,25 @@ sox invalid-raw.mp3 -C 64 invalid.mp3 tempo 1.50 channels 1 silence 1 0.1 0.1% r
 sox valid-raw.mp3 -C 64 valid.mp3 tempo 1.50 channels 1 silence 1 0.1 0.1% reverse silence 1 0.1 0.1% reverse
 ```
 
-### Speech Synthesis
+### Audio
+
+Audio playback uses https://howlerjs.com/.
+
+#### HTML5 Audio (for reference)
+
+* https://stackoverflow.com/questions/9419263/playing-audio-with-javascript
+
+#### Speech Synthesis (for reference)
 
 * https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API
 
 ```javascript
-// if ('speechSynthesis' in window) {
-//     const utterance = new SpeechSynthesisUtterance(message);
-//     utterance.rate = 2;
-//     utterance.pitch = 0.85;
-//     window.speechSynthesis.speak(utterance);
-// }
+if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(message);
+    utterance.rate = 2;
+    utterance.pitch = 0.85;
+    window.speechSynthesis.speak(utterance);
+}
 ```
 
 ### ISBN Validation
