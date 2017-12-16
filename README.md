@@ -1,6 +1,6 @@
 # Numpad ISBN
 
-Enter ISBNs in bulk with a numpad.
+Enter ISBNs in bulk with a numpad and validate.
 
 ### Original Audio Files
 
