@@ -10,6 +10,12 @@
     const xNode        = document.getElementById('numpad-isbn-replace-x');
     const validateNode = document.getElementById('numpad-isbn-validate');
 
+    const hasStorage = (typeof(Storage) !== "undefined");
+
+    if (hasStorage && localStorage && localStorage.data) {
+        inputNode.value = localStorage.data;
+    }
+
     const AUDIO = {
         '0'       : new Howl({ src : ['audio/0.mp3']       }),
         '1'       : new Howl({ src : ['audio/1.mp3']       }),
@@ -51,8 +57,10 @@
         const shouldReplaceWithX = xNode.checked;
         const shouldValidate     = validateNode.checked;
 
-        if (isValidISBNCharacter(event)) {
-            let key = event.key;
+        let   key         = event.key;
+        const isValidChar = isValidISBNCharacter(event);
+
+        if (isValidChar) {
 
             if (shouldReplaceWithX) {
                 if (event.keyCode === 107) {
@@ -78,7 +86,14 @@
                 }
             }
         }
+
+        if (hasStorage) {
+            // we have to append the key manually since we are executing on keydown
+            localStorage.setItem('data', inputNode.value + (isValidChar ? key : ''));
+        }
     }
 
+    // we are executing on keydown to intercept input before it prints to the texearea
+    // (preventing a visual jump)
     inputNode.addEventListener('keydown', handleKeydown, false);
 });
